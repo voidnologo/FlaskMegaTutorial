@@ -4,6 +4,7 @@ import os
 
 from flask import Flask
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
@@ -12,10 +13,26 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# db
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+# login
 login = LoginManager(app)
 login.login_view = 'login'
+
+# mail
+mail = Mail(app)
+# python -m smtpd -n -c DebuggingServer localhost:8025
+# export MAIL_SERVER=localhost
+# export MAIL_PORT=8025
+# --- or use gmail
+# export MAIL_SERVER=smtp.googlemail.com
+# export MAIL_PORT=587
+# export MAIL_USE_TLS=1
+# export MAIL_USERNAME=<your-gmail-username>
+# export MAIL_PASSWORD=<your-gmail-password>
 
 
 def email_logger():
