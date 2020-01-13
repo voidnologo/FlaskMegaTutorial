@@ -3,6 +3,7 @@ from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 
 from flask import Flask
+from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
@@ -33,6 +34,9 @@ mail = Mail(app)
 # export MAIL_USE_TLS=1
 # export MAIL_USERNAME=<your-gmail-username>
 # export MAIL_PASSWORD=<your-gmail-password>
+
+# css/js
+bootstrap = Bootstrap(app)
 
 
 def email_logger():
